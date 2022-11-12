@@ -12,10 +12,33 @@
             <img class="d-block mx-auto my-2" src="assets/images/15973932905401_logo.png" alt="logo">
         </header>
         <main class="container">
-            <form class="d-flex" role="search">
+            <form class="d-flex flex-column" role="search">
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Rechercher une recette" aria-label="Example text with button addon" aria-describedby="button-addon1">
                     <button class="btn btn-outline-secondary" type="button" id="button-addon1">Button</button>
+                </div>
+                <div class="d-flex">
+                    <div class="dropdown me-3" ml-3>
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Ingredients
+                        </button>
+                        <ul class="dropdown-menu">
+                        </ul>
+                    </div>
+                    <div class="dropdown me-3">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Appareils
+                        </button>
+                        <ul class="dropdown-menu">
+                        </ul>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                          Ustensiles
+                        </button>
+                        <ul class="dropdown-menu">
+                        </ul>
+                    </div>
                 </div>
             </form>
         </main>
