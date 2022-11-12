@@ -1,0 +1,40 @@
+module.exports = function (grunt) {
+    grunt.initConfig({
+        uglify: {
+            my_target: {
+                files: {
+                }
+            }
+        },
+        sass: {
+            options: {
+                style: 'compressed'
+            },
+            files: { 
+                src: 'sass/main.scss',  // source files mask
+                dest: 'public/',    // destination folder
+                expand: true,    // allow dynamic building
+                flatten: true,   // remove all unnecessary nesting
+                ext: '.min.css'   // replace .js to .min.js
+            }
+        },
+        copy: {
+            main: {
+                // files: [{src : 'node_modules/normalize.css/normalize.css', dest: 'public/normalize.css'}]
+            },
+        },
+        watch: {
+            js:  { files: 'scripts/**/*.js', tasks: [ 'uglify' ] },
+            css:  { files: ['sass/main.scss', 'sass/**/*.scss'], tasks: [ 'copy','sass' ] }
+        },
+    });
+
+    // load plugins
+    grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-sass');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+
+    // register at least this one task
+    grunt.registerTask('default', ['uglify', 'copy', 'sass']);
+};
