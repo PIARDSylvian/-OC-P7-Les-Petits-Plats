@@ -3,6 +3,9 @@ module.exports = function (grunt) {
         uglify: {
             my_target: {
                 files: {
+                    'public/scripts/home.min.js': [
+                        'scripts/pages/home.js'
+                    ]
                 }
             }
         },
@@ -20,7 +23,7 @@ module.exports = function (grunt) {
         },
         copy: {
             main: {
-                // files: [{src : 'node_modules/normalize.css/normalize.css', dest: 'public/normalize.css'}]
+                files: [{src : 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js', dest: 'public/scripts/bootstrap.bundle.min.js'}]
             },
         },
         watch: {
