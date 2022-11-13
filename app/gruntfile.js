@@ -4,6 +4,7 @@ module.exports = function (grunt) {
             my_target: {
                 files: {
                     'public/scripts/home.min.js': [
+                        'data/recipes.js',
                         'scripts/pages/home.js'
                     ]
                 }
