@@ -1,1 +1,20 @@
 @import "../../node_modules/bootstrap/scss/bootstrap";
+@import "../../node_modules/bootstrap-icons/font/bootstrap-icons.scss";
+
+.dropdown .dropdown-toggle {
+  &::after {
+    content: "<";
+    transform: rotate(90deg);
+    transition: all .5s;
+    border: none;
+    vertical-align: unset;
+  }
+
+  &.show::after {
+    transform: rotate(-90deg);
+  }
+}
+
+input.form-control {
+  border-right: none;
+}
