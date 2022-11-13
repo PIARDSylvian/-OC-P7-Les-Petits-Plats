@@ -1,0 +1,27 @@
+{
+  "name": "les_petits_plats",
+  "version": "1.0.0",
+  "description": "web site for Find a recipe",
+  "main": "index.js",
+  "scripts": {
+    "dev": "http-server ./ & grunt & grunt watch --force",
+    "lint": "eslint scripts/**/*.js"
+  },
+  "author": "Piard Sylvian",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.2.2",
+    "bootstrap-icons": "^1.10.1",
+    "eslint": "^8.25.0",
+    "http-server": "^14.1.0",
+    "sass": "^1.55.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.5.3",
+    "grunt-cli": "^1.4.3",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-sass": "^2.0.0",
+    "grunt-contrib-uglify": "^5.2.2",
+    "grunt-contrib-watch": "^1.1.0"
+  }
+}
