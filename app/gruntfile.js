@@ -23,7 +23,11 @@ module.exports = function (grunt) {
         },
         copy: {
             main: {
-                files: [{src : 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js', dest: 'public/scripts/bootstrap.bundle.min.js'}]
+                files: [
+                    {src : 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js', dest: 'public/scripts/bootstrap.bundle.min.js'},
+                    {src : 'node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff', dest: 'public/fonts/bootstrap-icons.woff'},
+                    {src : 'node_modules/bootstrap-icons/font/fonts/bootstrap-icons.woff2', dest: 'public/fonts/bootstrap-icons.woff2'}
+                ]
             },
         },
         watch: {
