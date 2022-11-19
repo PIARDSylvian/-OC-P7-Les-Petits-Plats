@@ -18,34 +18,22 @@
                     <input type="text" class="form-control" id="search" autocomplete="none" placeholder="Rechercher une recette" aria-label="Rechercher une recette">
                     <label for="search" class="input-group-text"><i class="bi bi-search"></i></label>
                 </div>
-                <div class="d-flex align-items-start flex-column flex-sm-row">
+                <ul class="d-flex w-100" id="tags"></ul>
+                <div class="col-12 d-flex align-items-start flex-column flex-md-row">
                     <div class="input-group mb-3 me-3 dropdown">
                         <input type="text" class="form-control bg-primary" id="ingredients" placeholder="Ingredients" aria-label="Rechercher par ingredients">
                         <label for="ingredients" class="input-group-text bg-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-chevron-down"></i></label>
-                        <ul class="dropdown-menu bg-primary">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                        <ul class="dropdown-menu bg-primary"></ul>
                     </div>
-                    <div class="d-flex" id="tags"></div>
                     <div class="input-group mb-3 me-3 dropdown">
-                        <input type="text" class="form-control bg-success" id="appareils" placeholder="Appareils" aria-label="Rechercher par appareils">
-                        <label for="appareils" class="input-group-text bg-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-chevron-down"></i></label>
-                        <ul class="dropdown-menu bg-success">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                        <input type="text" class="form-control bg-success" id="appliance" placeholder="Appareils" aria-label="Rechercher par appareils">
+                        <label for="appliance" class="input-group-text bg-success dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-chevron-down"></i></label>
+                        <ul class="dropdown-menu bg-success"></ul>
                     </div>
                     <div class="input-group mb-3 dropdown">
-                        <input type="text" class="form-control bg-danger" id="ustensiles" placeholder="Ustensiles" aria-label="Rechercher par ustensiles">
-                        <label for="ustensiles" class="input-group-text bg-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-chevron-down"></i></label>
-                        <ul class="dropdown-menu bg-danger">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                        <input type="text" class="form-control bg-danger" id="ustensils" placeholder="Ustensiles" aria-label="Rechercher par ustensiles">
+                        <label for="ustensils" class="input-group-text bg-danger dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-chevron-down"></i></label>
+                        <ul class="dropdown-menu bg-danger"></ul>
                     </div>
                 </div>
             </form>

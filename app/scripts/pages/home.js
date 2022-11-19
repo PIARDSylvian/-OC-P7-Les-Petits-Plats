@@ -14,26 +14,87 @@ function removeSpinner(element) {
     element.innerHTML = '';
 }
 
-const tagSearch = document.querySelectorAll('#ingredients, #appareils, #ustensiles');
+function renderTagList(dropdownMenu, tags) {
+    tagsLength = tags.length;
+    dropdownMenu.innerHTML = '';
+
+    if (tagsLength === 0) {
+            const tag = document.createElement('li');
+            tag.classList.add('col-12', 'col-md-4');
+            tag.innerText = 'Aucun resultat';
+            dropdownMenu.append(tag);
+    } else {
+        if (tagsLength > 10) {
+            dropdownMenu.classList.add('flex-row','flex-wrap','justify-content-start');
+        }
+        for (let index = 0; index < tagsLength; index++) {
+            const element = tags[index];
+            const tag = document.createElement('li');
+            tag.classList.add('col-12', 'col-md-4');
+            tag.innerText = element
+            tag.addEventListener('click', function(e){
+                const tag = document.createElement('li');
+                tag.innerText = this.innerText;
+                const parentClassList = this.parentNode.classList;
+                const bgClass = Array.from(parentClassList).filter(className => /^bg-*/.test(className));
+                tag.classList.add(bgClass, 'badge');
+
+                const remove = document.createElement('i');
+                remove.classList.add('bi', 'bi-x-circle');
+
+                remove.addEventListener('click',function(e){
+                    this.parentNode.remove();
+                    // TODO call research
+                })
+
+                tag.append(remove);
+                document.querySelector('#tags').append(tag);
+                this.remove();
+            });
+            dropdownMenu.append(tag);
+            // TODO call research
+        }
+    }
+}
+
+const tagSearch = document.querySelectorAll('#ingredients, #appliance, #ustensils');
 tagSearch.forEach(search => {
     search.addEventListener("keyup", function(e){
+        const dropdownButton = this.parentNode.querySelector('label:not(.show)');
+        const dropdownMenu = this.parentNode.querySelector('.dropdown-menu');
         if(this.value.length >= 3) {
             // Trigger click event on dropdown if not already  open
-            const dropdownButton = this.parentNode.querySelector('label:not(.show)');
             if(dropdownButton) dropdownButton.click();
-            const dropdownMenu = this.parentNode.querySelector('.dropdown-menu');
             addSpinner(dropdownMenu);
-
-            // TODO Call factory search
-            console.log(this.value)
-
-
+            const tags = searchRecipes(this.value, 'tag', this.id);
             removeSpinner(dropdownMenu);
-
-            // TODO Append filtered elements
-
-            // If result have too much elements
-            this.parentNode.querySelector('.dropdown-menu').classList.add('flex-row');
+            renderTagList(dropdownMenu, tags)
+        } else {
+            addSpinner(dropdownMenu);
+            tags = searchRecipes('', 'tag', this.id);
+            removeSpinner(dropdownMenu);
+            renderTagList(dropdownMenu, tags);
         }
     });
 });
+
+let data = [];
+
+function searchRecipes(value, tag, tagType) {
+    let result = null
+    if (data.length > 0) {
+        result = recipesFactory(data, value, tag, tagType);
+    } else {
+        result = recipesFactory(recipes, value, tag, tagType);
+    }
+
+    return result.getResult();
+}
+
+function init() {
+    renderTagList(document.querySelector('#ingredients~.dropdown-menu'), searchRecipes('', 'tag', 'ingredients'));
+    renderTagList(document.querySelector('#appliance~.dropdown-menu'), searchRecipes('', 'tag', 'appliance'));
+    renderTagList(document.querySelector('#ustensils~.dropdown-menu'), searchRecipes('', 'tag', 'ustensils'));
+}
+
+init();

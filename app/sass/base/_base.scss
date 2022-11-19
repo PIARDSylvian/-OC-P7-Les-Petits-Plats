@@ -2,65 +2,82 @@
 @import "../../node_modules/bootstrap-icons/font/bootstrap-icons.scss";
 
 #search {
-  border-right: none;
+	border-right: none;
 }
 
-#ingredients, #appareils, #ustensiles {
-  border-right: none;
-  color: white;
+#tags {
+  padding: 0;
 
-  &:focus {
-    box-shadow: none;
-    border-bottom-left-radius: 0;
-  }
+	li {
+		margin: .5em;
+		padding: .5em;
 
-  &::placeholder {
-    color: white;
-  }
+		i {
+			margin-left: .5em;
+		}
+	}
 }
 
+#ingredients, #appliance, #ustensils {
+	border-right: none;
+	color: white;
 
-.dropdown .dropdown-toggle {
-  i {
-    transition: transform .5s;
-    color: white;
-  }
+	&:focus {
+		box-shadow: none;
+		border-bottom-left-radius: 0;
+	}
 
-  &.show {
-    border-bottom-right-radius: 0;
-
-    i {
-      transform: rotate(180deg);
-    }
-  }
-
-  &::after {
-    content: "";
-    border: 0;
-    margin: 0;
-    color: white;
-  }
+	&::placeholder {
+		color: white;
+	}
 }
 
-.dropdown .dropdown-menu {
-  &.show {
-    transform: translateY(-1px) !important;
-    border-top: none;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    position: static !important;
+.dropdown {
+	width: fit-content !important;
 
-    @media screen and (max-width: 575px) {
-      position: absolute !important;
-      transform: translateY(37px) !important;
-    }
-  }
+	.dropdown-toggle {
+		i {
+			transition: transform .5s;
+			color: white;
+		}
 
-  a {
-    color: white;
-  }
+		&.show {
+			border-bottom-right-radius: 0;
+
+			i {
+				transform: rotate(180deg);
+			}
+		}
+
+		&::after {
+			content: "";
+			border: 0;
+			margin: 0;
+			color: white;
+		}
+	}
+
+	.dropdown-menu {
+		&.show {
+			transform: translateY(-1px) !important;
+			border-top: none;
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			position: static !important;
+			padding: 1em;
+
+			@media screen and (max-width: 575px) {
+			position: absolute !important;
+			transform: translateY(37px) !important;
+			}
+		}
+  
+		li {
+			color: white;
+		}
+	}	
 }

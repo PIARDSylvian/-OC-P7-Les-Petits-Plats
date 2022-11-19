@@ -5,6 +5,9 @@ module.exports = function (grunt) {
                 files: {
                     'public/scripts/home.min.js': [
                         'data/recipes.js',
+                        'scripts/factories/recipes.js',
+                        'scripts/models/Search.js',
+                        'scripts/models/TagSearch.js',
                         'scripts/pages/home.js'
                     ]
                 }
