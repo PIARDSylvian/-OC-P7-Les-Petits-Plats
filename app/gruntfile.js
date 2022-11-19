@@ -8,6 +8,7 @@ module.exports = function (grunt) {
                         'scripts/factories/recipes.js',
                         'scripts/models/Search.js',
                         'scripts/models/TagSearch.js',
+                        'scripts/models/RecipesSearch.js',
                         'scripts/pages/home.js'
                     ]
                 }

@@ -1,8 +1,7 @@
 const generalSearch = document.querySelector('#search');
 generalSearch.addEventListener("keyup", function(e){
     if(this.value.length >= 3) {
-        // TODO Call factory search
-        console.log(this.value)
+        searchRecipes(this.value);
     }
 });
 
@@ -26,9 +25,26 @@ function renderTagList(dropdownMenu, tags) {
     } else {
         if (tagsLength > 10) {
             dropdownMenu.classList.add('flex-row','flex-wrap','justify-content-start');
+        } else {
+            dropdownMenu.classList.remove('flex-row','flex-wrap','justify-content-start');
         }
         for (let index = 0; index < tagsLength; index++) {
             const element = tags[index];
+
+            const selectedTags = document.querySelectorAll('#tags li');
+            const selectedTagsLength = selectedTags.length;
+            let selectedTag = false;
+            if(selectedTagsLength > 0) {
+                for (let index = 0; index < selectedTagsLength; index++) {
+                    const tag = selectedTags[index];
+                    if (tag.innerText === element) {
+                        selectedTag = true;
+                    }
+                }
+            }
+
+            if (selectedTag) continue;
+
             const tag = document.createElement('li');
             tag.classList.add('col-12', 'col-md-4');
             tag.innerText = element
@@ -38,21 +54,22 @@ function renderTagList(dropdownMenu, tags) {
                 const parentClassList = this.parentNode.classList;
                 const bgClass = Array.from(parentClassList).filter(className => /^bg-*/.test(className));
                 tag.classList.add(bgClass, 'badge');
+                tag.dataset.type = this.parentNode.parentNode.querySelector('input').id;
 
                 const remove = document.createElement('i');
                 remove.classList.add('bi', 'bi-x-circle');
 
                 remove.addEventListener('click',function(e){
                     this.parentNode.remove();
-                    // TODO call research
+                    searchRecipes(document.querySelector('#search').value)
                 })
 
                 tag.append(remove);
                 document.querySelector('#tags').append(tag);
                 this.remove();
+                searchRecipes(document.querySelector('#search').value)
             });
             dropdownMenu.append(tag);
-            // TODO call research
         }
     }
 }
@@ -66,12 +83,12 @@ tagSearch.forEach(search => {
             // Trigger click event on dropdown if not already  open
             if(dropdownButton) dropdownButton.click();
             addSpinner(dropdownMenu);
-            const tags = searchRecipes(this.value, 'tag', this.id);
+            const tags = searchTag(this.value, this.id);
             removeSpinner(dropdownMenu);
             renderTagList(dropdownMenu, tags)
         } else {
             addSpinner(dropdownMenu);
-            tags = searchRecipes('', 'tag', this.id);
+            tags = searchTag('', this.id);
             removeSpinner(dropdownMenu);
             renderTagList(dropdownMenu, tags);
         }
@@ -80,21 +97,53 @@ tagSearch.forEach(search => {
 
 let data = [];
 
-function searchRecipes(value, tag, tagType) {
+function searchTag(value, tagType) {
     let result = null
     if (data.length > 0) {
-        result = recipesFactory(data, value, tag, tagType);
+        result = recipesFactory(data, value, 'tag', tagType);
     } else {
-        result = recipesFactory(recipes, value, tag, tagType);
+        result = recipesFactory(recipes, value, 'tag', tagType);
     }
 
     return result.getResult();
 }
 
+function getTags() {
+    const tags = document.querySelectorAll('#tags li');
+    tagsLength = tags.length;
+    let result = [];
+    for (let index = 0; index < tagsLength; index++) {
+        let tag = [];
+        tag.type = tags[index].dataset.type;
+        tag.value = tags[index].innerText;
+        result.push(tag);
+    }
+
+    return result;
+}
+
+function renderRecipes() {
+    if (data.length > 0) {
+        console.log(data);
+    } else {
+        console.log(recipes);
+    }
+}
+
+function searchRecipes(value) {
+    const tags = getTags(); 
+    let result = null
+    result = recipesFactory(recipes, value, 'recipes', null, tags);
+
+    data = result.getResult();
+    init();
+}
+
 function init() {
-    renderTagList(document.querySelector('#ingredients~.dropdown-menu'), searchRecipes('', 'tag', 'ingredients'));
-    renderTagList(document.querySelector('#appliance~.dropdown-menu'), searchRecipes('', 'tag', 'appliance'));
-    renderTagList(document.querySelector('#ustensils~.dropdown-menu'), searchRecipes('', 'tag', 'ustensils'));
+    renderTagList(document.querySelector('#ingredients~.dropdown-menu'), searchTag('', 'ingredients'));
+    renderTagList(document.querySelector('#appliance~.dropdown-menu'), searchTag('', 'appliance'));
+    renderTagList(document.querySelector('#ustensils~.dropdown-menu'), searchTag('', 'ustensils'));
+    renderRecipes();
 }
 
 init();
