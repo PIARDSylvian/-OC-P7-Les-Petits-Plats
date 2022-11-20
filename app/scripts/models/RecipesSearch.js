@@ -35,7 +35,11 @@ class RecipesSearch extends Search {
                 valid = this.search(element.description, this._search);
             }
             if (valid.length === 0) {
-                const ingredients = element.ingredients.map((ingredient) => {return ingredient.ingredient});
+                const typesLength = element.ingredients.length;
+                let ingredients = [];
+                for (let index = 0; index < typesLength; index++) {
+                    ingredients.push(element.ingredients[index].ingredient);
+                }
                 valid = this.search(ingredients, this._search);
             }
             if (valid.length > 0) {
@@ -45,7 +49,11 @@ class RecipesSearch extends Search {
                     const tag = this._tags[index];
 
                     if(tag.type === 'ingredients') {
-                        const data = element.ingredients.map((ingredient) => {return ingredient.ingredient});
+                        const typesLength = element.ingredients.length;
+                        let data = [];
+                        for (let index = 0; index < typesLength; index++) {
+                            data.push(element.ingredients[index].ingredient);
+                        }
                         if (tagValid) {
                             tagValid = this.tagValid(data, tag.value)
                         }

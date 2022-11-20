@@ -2,6 +2,8 @@ const generalSearch = document.querySelector('#search');
 generalSearch.addEventListener("keyup", function(e){
     if(this.value.length >= 3) {
         searchRecipes(this.value);
+    } else {
+        renderRecipes();
     }
 });
 
@@ -122,9 +124,9 @@ function getTags() {
     return result;
 }
 
-function renderRecipes() {
+function renderRecipes(isSearch = false) {
     let toRender;
-    if (data.length > 0) {
+    if (isSearch) {
         toRender = data;
     } else {
         toRender = recipes;
@@ -136,7 +138,7 @@ function renderRecipes() {
         const recipe = toRender[index];
 
         const cardContainer = document.createElement('div');
-        cardContainer.classList.add('col-12', 'col-md-4');
+        cardContainer.classList.add('col-xs-12', 'col-md-6', 'col-lg-4'); 
         const card = document.createElement('div');
         card.classList.add('card');
         const img = document.createElement('img');
@@ -209,14 +211,14 @@ function searchRecipes(value) {
     result = recipesFactory(recipes, value, 'recipes', null, tags);
 
     data = result.getResult();
-    init();
+    init(true);
 }
 
-function init() {
+function init(isSearch = false) {
     renderTagList(document.querySelector('#ingredients~.dropdown-menu'), searchTag('', 'ingredients'));
     renderTagList(document.querySelector('#appliance~.dropdown-menu'), searchTag('', 'appliance'));
     renderTagList(document.querySelector('#ustensils~.dropdown-menu'), searchTag('', 'ustensils'));
-    renderRecipes();
+    renderRecipes(isSearch);
 }
 
-init();
+init(false);

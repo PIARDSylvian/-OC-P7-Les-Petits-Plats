@@ -13,7 +13,11 @@ class TagSearch extends Search {
             let valid;
             if (element[this._type]) {
                 if (this._type === 'ingredients') {
-                    const ingredients = element[this._type].map((ingredient) => {return ingredient.ingredient});
+                    const typesLength = element.ingredients.length;
+                    let ingredients = [];
+                    for (let index = 0; index < typesLength; index++) {
+                        ingredients.push(element.ingredients[index].ingredient);
+                    }
                     valid = this.search(ingredients, this._search);
                 } else {
                     valid = this.search(element[this._type], this._search);
