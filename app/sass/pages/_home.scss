@@ -22,6 +22,10 @@ img[alt='logo'] {
 
 #tagsSelect {
 	height: 3.5em;
+
+	@media screen and (max-width: 767px) {
+        height: 10em;
+    }
 }
 
 #ingredients, #appliance, #ustensils {
