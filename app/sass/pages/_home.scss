@@ -87,9 +87,22 @@ img[alt='logo'] {
 .card {
 	margin-bottom: 1.5rem;
 	height: calc(100% - 1.5rem);
-
+	
 	img {
 		height: 180px;
 		background-color: $gray-400;
+	}
+
+	.card-header {
+		border: none;
+	}
+
+	.card-body * {
+		flex: 1;
+		list-style-type: none;
+	}
+
+	.card-header, .card-body {
+		background-color: $gray-200;
 	}
 }

@@ -143,10 +143,59 @@ function renderRecipes() {
         img.classList.add('card-img-top');
         card.append(img)
         const body = document.createElement('div');
-        body.classList.add('card-body');
+        body.classList.add('card-body', 'd-flex');
+
+        const header = document.createElement('div');
+        header.classList.add('card-header', 'd-flex', 'justify-content-between');
         const title = document.createElement('h5');
         title.innerText = recipe.name;
-        body.append(title);
+
+        const time = document.createElement('span');
+        time.classList.add('d-flex', 'fw-bold');
+        const timeIcon = document.createElement('i');
+        timeIcon.classList.add('bi','bi-clock', 'me-1')
+        time.append(timeIcon)
+        time.innerHTML += recipe.time + "min";
+
+        header.append(title, time);
+        card.append(header);
+
+        const ingredients = document.createElement('ul');
+        ingredients.classList.add('p-0', 'me-2', 'm-0');
+        const ingredientsLength = recipe.ingredients.length
+        for (let index = 0; index < ingredientsLength; index++) {
+            const ingredient = document.createElement('li');
+            const ingredientName = document.createElement('span');
+            ingredientName.classList.add('fw-bold')
+            ingredientName.innerText = recipe.ingredients[index].ingredient
+            let unit = '';
+            if (recipe.ingredients[index].unit) {
+                unit = recipe.ingredients[index].unit.split(' ')[0]
+            }
+            if(unit.length > 2) unit = ' '+ unit;
+
+            let quantity = recipe.ingredients[index].quantity;
+            if(quantity) {
+                ingredientName.innerText += ": ";
+                ingredient.innerText = quantity + unit;
+            }
+
+            ingredient.prepend(ingredientName);
+            ingredients.append(ingredient)
+        }
+        body.append(ingredients)
+
+        const description = document.createElement('p')
+        description.classList.add('p-0', 'ms-2', 'm-0');
+        if(recipe.description.length > 200) {
+            description.innerText = recipe.description.slice(0, 200) + "...";
+
+        } else {
+            description.innerText = recipe.description;
+        }
+
+        body.append(description)
+
         card.append(body);
         cardContainer.append(card);
 
