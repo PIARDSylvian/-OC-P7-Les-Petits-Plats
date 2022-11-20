@@ -1,0 +1,95 @@
+img[alt='logo'] {
+    width: 300px;
+}
+
+#search {
+	border-right: none;
+}
+
+#tags {
+  padding: 0;
+  margin: 0 -.3em;
+
+	li {
+		margin: 0 .5em .5em;
+		padding: .5em;
+
+		i {
+			margin-left: .5em;
+		}
+	}
+}
+
+#ingredients, #appliance, #ustensils {
+	border-right: none;
+	color: white;
+
+	&:focus {
+		box-shadow: none;
+		border-bottom-left-radius: 0;
+	}
+
+	&::placeholder {
+		color: white;
+	}
+}
+
+.dropdown {
+	width: fit-content !important;
+
+	.dropdown-toggle {
+		i {
+			transition: transform .5s;
+			color: white;
+		}
+
+		&.show {
+			border-bottom-right-radius: 0;
+
+			i {
+				transform: rotate(180deg);
+			}
+		}
+
+		&::after {
+			content: "";
+			border: 0;
+			margin: 0;
+			color: white;
+		}
+	}
+
+	.dropdown-menu {
+		&.show {
+			transform: translateY(-1px) !important;
+			border-top: none;
+			border-top-left-radius: 0;
+			border-top-right-radius: 0;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-evenly;
+			position: static !important;
+			padding: 1em;
+
+			@media screen and (max-width: 575px) {
+			position: absolute !important;
+			transform: translateY(37px) !important;
+			}
+		}
+  
+		li {
+			color: white;
+		}
+	}	
+}
+
+.card {
+	margin-bottom: 1.5rem;
+	height: calc(100% - 1.5rem);
+
+	img {
+		height: 180px;
+		background-color: $gray-400;
+	}
+}

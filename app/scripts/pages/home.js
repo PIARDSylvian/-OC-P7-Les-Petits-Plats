@@ -123,10 +123,34 @@ function getTags() {
 }
 
 function renderRecipes() {
+    let toRender;
     if (data.length > 0) {
-        console.log(data);
+        toRender = data;
     } else {
-        console.log(recipes);
+        toRender = recipes;
+    }
+
+    let toRenderLength = toRender.length;
+    document.querySelector('#results').innerHTML = "";
+    for (let index = 0; index < toRenderLength; index++) {
+        const recipe = toRender[index];
+
+        const cardContainer = document.createElement('div');
+        cardContainer.classList.add('col-12', 'col-md-4');
+        const card = document.createElement('div');
+        card.classList.add('card');
+        const img = document.createElement('img');
+        img.classList.add('card-img-top');
+        card.append(img)
+        const body = document.createElement('div');
+        body.classList.add('card-body');
+        const title = document.createElement('h5');
+        title.innerText = recipe.name;
+        body.append(title);
+        card.append(body);
+        cardContainer.append(card);
+
+        document.querySelector('#results').append(cardContainer);
     }
 }
 
