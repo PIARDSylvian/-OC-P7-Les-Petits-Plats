@@ -81,7 +81,7 @@ tagSearch.forEach(search => {
     search.addEventListener("keyup", function(e){
         const dropdownButton = this.parentNode.querySelector('label:not(.show)');
         const dropdownMenu = this.parentNode.querySelector('.dropdown-menu');
-        if(this.value.length >= 3) {
+        if(this.value.length >= 1) {
             // Trigger click event on dropdown if not already  open
             if(dropdownButton) dropdownButton.click();
             addSpinner(dropdownMenu);
