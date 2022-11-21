@@ -3,7 +3,7 @@ generalSearch.addEventListener("keyup", function(e){
     if(this.value.length >= 3) {
         searchRecipes(this.value);
     } else {
-        renderRecipes();
+        searchRecipes('');
     }
 });
 
