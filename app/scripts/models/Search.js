@@ -7,6 +7,7 @@ class Search {
 
     regSearch(data, search) {
         search = search.normalize("NFD").replace(/\p{Diacritic}/gu, "") //remove accents
+        data = data.normalize("NFD").replace(/\p{Diacritic}/gu, "") //remove accents
 
         const reg = new RegExp(search,"gi");
         return reg.test(data);
