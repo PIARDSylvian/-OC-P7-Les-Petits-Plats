@@ -1,3 +1,6 @@
+/**
+ * Search (extended object)
+ */
 class Search {
     constructor(data, search) {
         this._data =  data,
@@ -5,6 +8,14 @@ class Search {
 
     }
 
+    /**
+     * Search with regex 
+     * 
+     * @param {string} data 
+     * @param {string} search
+     * 
+     * @returns {boolean}
+     */
     regSearch(data, search) {
         search = search.normalize("NFD").replace(/\p{Diacritic}/gu, "") //remove accents
         data = data.normalize("NFD").replace(/\p{Diacritic}/gu, "") //remove accents
@@ -13,6 +24,14 @@ class Search {
         return reg.test(data);
     }
 
+    /**
+     * Search
+     * 
+     * @param {string | object} data
+     * @param {string} search
+     * 
+     * @returns {array}
+     */
     search(data, search) {
         let result = [];
         if (typeof data === 'string') {

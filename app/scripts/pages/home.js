@@ -1,4 +1,9 @@
 const generalSearch = document.querySelector('#search');
+
+/**
+ * Add Event lisner on general search
+ * Search with tags
+ */
 generalSearch.addEventListener("keyup", function(e){
     if(this.value.length >= 3) {
         searchRecipes(this.value);
@@ -7,14 +12,31 @@ generalSearch.addEventListener("keyup", function(e){
     }
 });
 
+/**
+ * Add loader
+ * 
+ * @param {DomObject} element 
+ */
 function addSpinner(element) {
     element.innerHTML = '<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>';
 }
 
+/**
+ * Remove loader
+ * 
+ * @param {DomObject} element 
+ */
 function removeSpinner(element) {
     element.innerHTML = '';
 }
 
+/**
+ * Render a list of tags, on select dropdown,
+ * add event
+ * 
+ * @param {DomObject} dropdownMenu 
+ * @param {Object} tags 
+ */
 function renderTagList(dropdownMenu, tags) {
     tagsLength = tags.length;
     dropdownMenu.innerHTML = '';
@@ -77,6 +99,9 @@ function renderTagList(dropdownMenu, tags) {
 }
 
 const tagSearch = document.querySelectorAll('#ingredients, #appliance, #ustensils');
+/**
+ * Add event on drop down selector
+ */
 tagSearch.forEach(search => {
     search.addEventListener("keyup", function(e){
         const dropdownButton = this.parentNode.querySelector('label:not(.show)');
@@ -98,7 +123,14 @@ tagSearch.forEach(search => {
 });
 
 let data = [];
-
+/**
+ * Call recipesFactory
+ * 
+ * @param {String} value 
+ * @param {String} tagType
+ * 
+ * @returns {Array} Tags
+ */
 function searchTag(value, tagType) {
     let result = null
     if (data.length > 0) {
@@ -110,6 +142,11 @@ function searchTag(value, tagType) {
     return result.getResult();
 }
 
+/**
+ * Get all selected tags 
+ * 
+ * @returns {Array} tags
+ */
 function getTags() {
     const tags = document.querySelectorAll('#tags li');
     tagsLength = tags.length;
@@ -124,7 +161,12 @@ function getTags() {
     return result;
 }
 
-function renderRecipes(isSearch = false) {
+/**
+ * Render list of recipes stored in global data
+ * 
+ * @param {String} isSearch 
+ */
+ function renderRecipes(isSearch = false) {
     let toRender;
     if (isSearch) {
         toRender = data;
@@ -205,6 +247,11 @@ function renderRecipes(isSearch = false) {
     }
 }
 
+/**
+ * Search Recipes, with all selected tags
+ * 
+ * @param {string} value 
+ */
 function searchRecipes(value) {
     const tags = getTags(); 
     let result = null
@@ -214,6 +261,11 @@ function searchRecipes(value) {
     init(true);
 }
 
+/**
+ * Init page
+ * 
+ * @param {boolean} isSearch 
+ */
 function init(isSearch = false) {
     renderTagList(document.querySelector('#ingredients~.dropdown-menu'), searchTag('', 'ingredients'));
     renderTagList(document.querySelector('#appliance~.dropdown-menu'), searchTag('', 'appliance'));

@@ -1,3 +1,6 @@
+/**
+ * Return search in Recipes with tag
+ */
 class RecipesSearch extends Search {
     constructor(data, search, tags) {
         super(data, search);
@@ -5,6 +8,14 @@ class RecipesSearch extends Search {
 
     }
 
+    /**
+     * Return true if tag is valid
+     * 
+     * @param {string | object} data 
+     * @param {string} tag
+     *  
+     * @returns {boolean} 
+     */
     tagValid(data, tag) {
         let valid = false;
         if (typeof data === 'string') {
@@ -24,6 +35,11 @@ class RecipesSearch extends Search {
         return valid;
     }
 
+    /**
+     * Get result of research
+     * 
+     * @returns {Array} result
+     */
     getResult() {
         const length = this._data.length;
         let result = [];

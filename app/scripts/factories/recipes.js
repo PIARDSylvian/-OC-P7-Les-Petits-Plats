@@ -7,7 +7,7 @@
  * @param {string} tagType
  * @param {Array} tags
  * 
- * @returns {object} mediaObject for call getMediaCardDOM();
+ * @returns {object} searchObject for call getResult();
  */
  function recipesFactory(data, search, type, tagType, tags) { // eslint-disable-line
     if(type === 'tag') {
@@ -15,6 +15,6 @@
     } else if(type === 'recipes') {
         return new RecipesSearch(data, search, tags); // eslint-disable-line
     } else {
-        throw 'Unknown type format'
+        throw 'Unknown type format';
     }
 }

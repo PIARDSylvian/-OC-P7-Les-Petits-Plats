@@ -1,3 +1,6 @@
+/**
+ * Return search in tag
+ */
 class TagSearch extends Search {
     constructor(data, search, tagType) {
         super(data, search);
@@ -5,6 +8,11 @@ class TagSearch extends Search {
 
     }
 
+    /**
+     * Get result of research
+     * 
+     * @returns {Array} result
+     */
     getResult() {
         const length = this._data.length;
         let result = [];
