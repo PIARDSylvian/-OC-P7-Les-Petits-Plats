@@ -1,7 +1,7 @@
 /**
  * Return search in Recipes with tag
  */
-class RecipesSearch extends Search {
+class RecipesSearch extends Search { // eslint-disable-line
     constructor(data, search, tags) {
         super(data, search);
         this._tags = tags;
