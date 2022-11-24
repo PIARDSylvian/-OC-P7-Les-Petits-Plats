@@ -4,7 +4,7 @@
 class TagSearch extends Search {
     constructor(data, search, tagType) {
         super(data, search);
-        this._type = tagType
+        this._type = tagType;
 
     }
 
