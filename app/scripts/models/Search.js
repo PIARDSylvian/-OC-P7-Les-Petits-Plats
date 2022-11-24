@@ -3,8 +3,8 @@
  */
 class Search {
     constructor(data, search) {
-        this._data =  data,
-        this._search = search
+        this._data =  data;
+        this._search = search;
 
     }
 
@@ -17,8 +17,8 @@ class Search {
      * @returns {boolean}
      */
     regSearch(data, search) {
-        search = search.normalize("NFD").replace(/\p{Diacritic}/gu, "") //remove accents
-        data = data.normalize("NFD").replace(/\p{Diacritic}/gu, "") //remove accents
+        search = search.normalize("NFD").replace(/\p{Diacritic}/gu, ""); //remove accents
+        data = data.normalize("NFD").replace(/\p{Diacritic}/gu, ""); //remove accents
 
         const reg = new RegExp(search,"gi");
         return reg.test(data);
@@ -45,7 +45,7 @@ class Search {
                 if (valid) result.push(data[index].toLowerCase());
             }
         } else {
-            throw 'Unknown data format'
+            throw 'Unknown data format';
         }
         
         return result;

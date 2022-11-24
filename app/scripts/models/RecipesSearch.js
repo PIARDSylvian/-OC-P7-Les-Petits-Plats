@@ -4,7 +4,7 @@
 class RecipesSearch extends Search {
     constructor(data, search, tags) {
         super(data, search);
-        this._tags = tags
+        this._tags = tags;
 
     }
 
@@ -24,12 +24,10 @@ class RecipesSearch extends Search {
             const dataLength = data.length;
             for (let index = 0; index < dataLength; index++) {
                     valid = data[index].toLowerCase() === tag;
-                    if (valid) {
-                        break;
-                    };
+                    if (valid) break;
             }
         } else {
-            throw 'Unknown data format'
+            throw 'Unknown data format';
         }
     
         return valid;
@@ -71,11 +69,11 @@ class RecipesSearch extends Search {
                             data.push(element.ingredients[index].ingredient);
                         }
                         if (tagValid) {
-                            tagValid = this.tagValid(data, tag.value)
+                            tagValid = this.tagValid(data, tag.value);
                         }
                     } else {
                         if (tagValid) {
-                            tagValid = this.tagValid(element[tag.type], tag.value)
+                            tagValid = this.tagValid(element[tag.type], tag.value);
                         }
                     }
                 }
