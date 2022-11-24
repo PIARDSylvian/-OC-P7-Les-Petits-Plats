@@ -1,7 +1,7 @@
 /**
  * Return search in tag
  */
-class TagSearch extends Search {
+class TagSearch extends Search { // eslint-disable-line
     constructor(data, search, tagType) {
         super(data, search);
         this._type = tagType;

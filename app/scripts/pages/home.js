@@ -4,7 +4,7 @@ const generalSearch = document.querySelector('#search');
  * Add Event lisner on general search
  * Search with tags
  */
-generalSearch.addEventListener("keyup", function(e){
+generalSearch.addEventListener("keyup", function(){
     if(this.value.length >= 3) {
         searchRecipes(this.value);
     } else {
@@ -38,7 +38,7 @@ function removeSpinner(element) {
  * @param {Object} tags 
  */
 function renderTagList(dropdownMenu, tags) {
-    tagsLength = tags.length;
+    const tagsLength = tags.length;
     dropdownMenu.innerHTML = '';
 
     if (tagsLength === 0) {
@@ -72,7 +72,7 @@ function renderTagList(dropdownMenu, tags) {
             const tag = document.createElement('li');
             tag.classList.add('col-12', 'col-md-4');
             tag.innerText = element
-            tag.addEventListener('click', function(e){
+            tag.addEventListener('click', function(){
                 const tag = document.createElement('li');
                 tag.innerText = this.innerText;
                 const parentClassList = this.parentNode.classList;
@@ -83,7 +83,7 @@ function renderTagList(dropdownMenu, tags) {
                 const remove = document.createElement('i');
                 remove.classList.add('bi', 'bi-x-circle');
 
-                remove.addEventListener('click',function(e){
+                remove.addEventListener('click',function(){
                     this.parentNode.remove();
                     searchRecipes(document.querySelector('#search').value)
                 })
@@ -103,7 +103,7 @@ const tagSearch = document.querySelectorAll('#ingredients, #appliance, #ustensil
  * Add event on drop down selector
  */
 tagSearch.forEach(search => {
-    search.addEventListener("keyup", function(e){
+    search.addEventListener("keyup", function(){
         const dropdownButton = this.parentNode.querySelector('label:not(.show)');
         const dropdownMenu = this.parentNode.querySelector('.dropdown-menu');
         if(this.value.length >= 1) {
@@ -115,7 +115,7 @@ tagSearch.forEach(search => {
             renderTagList(dropdownMenu, tags)
         } else {
             addSpinner(dropdownMenu);
-            tags = searchTag('', this.id);
+            const tags = searchTag('', this.id);
             removeSpinner(dropdownMenu);
             renderTagList(dropdownMenu, tags);
         }
@@ -134,9 +134,9 @@ let data = [];
 function searchTag(value, tagType) {
     let result = null
     if (data.length > 0) {
-        result = recipesFactory(data, value, 'tag', tagType);
+        result = recipesFactory(data, value, 'tag', tagType); // eslint-disable-line
     } else {
-        result = recipesFactory(recipes, value, 'tag', tagType);
+        result = recipesFactory(recipes, value, 'tag', tagType); // eslint-disable-line
     }
 
     return result.getResult();
@@ -149,7 +149,7 @@ function searchTag(value, tagType) {
  */
 function getTags() {
     const tags = document.querySelectorAll('#tags li');
-    tagsLength = tags.length;
+    const tagsLength = tags.length;
     let result = [];
     for (let index = 0; index < tagsLength; index++) {
         let tag = [];
@@ -171,7 +171,7 @@ function getTags() {
     if (isSearch) {
         toRender = data;
     } else {
-        toRender = recipes;
+        toRender = recipes; // eslint-disable-line
     }
 
     let toRenderLength = toRender.length;
@@ -255,7 +255,7 @@ function getTags() {
 function searchRecipes(value) {
     const tags = getTags(); 
     let result = null
-    result = recipesFactory(recipes, value, 'recipes', null, tags);
+    result = recipesFactory(recipes, value, 'recipes', null, tags); // eslint-disable-line
 
     data = result.getResult();
     init(true);

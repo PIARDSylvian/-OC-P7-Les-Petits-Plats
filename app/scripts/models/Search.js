@@ -1,7 +1,7 @@
 /**
  * Search (extended object)
  */
-class Search {
+class Search { // eslint-disable-line
     constructor(data, search) {
         this._data =  data;
         this._search = search;
